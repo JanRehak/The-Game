@@ -4,10 +4,15 @@ import java.util.Scanner;
 public class TahovyBoj {
 
     public static void main(String[] args) {
-
+        /** volim si pocet sten kostky */
         Kostka kostka = new Kostka(10);
+        /** toto cele by melo prijit do metody pojmenujBojovnika()
+         * i s osetrenim magy, asi opet za pomoci instanceof
+         * kterou by zacinala tahle main metoda */
+        Scanner scanner = new Scanner(System.in);
 
-        boolean debug = false;
+        boolean debug = true;
+
         int maxPoints = 40;
         String jmeno1;
         int utok1;
@@ -17,7 +22,7 @@ public class TahovyBoj {
         int obrana2; // = maxPoints - utok2;
 
         if (!debug) {
-            Scanner scanner = new Scanner(System.in);
+
 
             System.out.println("Vitej v arene!");
             System.out.println("Jmeno Tveho Bojovnika?");
@@ -29,7 +34,6 @@ public class TahovyBoj {
             System.out.println("Jmeno Tveho soupere?");
             jmeno2 = scanner.next();
             System.out.println("Hodnota tveho utoku? Vyber si v rozmezi 0 - 40.");
-
             utok2 = scanner.nextInt();
             obrana2 = maxPoints - utok2;
             System.out.println("Hodnota tve obrany je: " + obrana2);
@@ -50,7 +54,7 @@ public class TahovyBoj {
         Arena arena = new Arena(Ilidanis, Gandalf, kostka);
 
 
-
+        /** spousti zapas*/
         arena.zapas();
 
     }
