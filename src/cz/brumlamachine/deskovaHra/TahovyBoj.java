@@ -1,4 +1,5 @@
 package cz.brumlamachine.deskovaHra;
+import java.util.Random;
 import java.util.Scanner;
 
 public class TahovyBoj {
@@ -6,13 +7,8 @@ public class TahovyBoj {
     public static void main(String[] args) {
         /** volim si pocet sten kostky */
         Kostka kostka = new Kostka(10);
-        /** toto cele by melo prijit do metody pojmenujBojovnika()
-         * i s osetrenim magy, asi opet za pomoci instanceof
-         * kterou by zacinala tahle main metoda */
         Scanner scanner = new Scanner(System.in);
-
-        boolean debug = true;
-
+        Random random = new Random();
         int maxPoints = 40;
         String jmeno1;
         int utok1;
@@ -21,44 +17,53 @@ public class TahovyBoj {
         int obrana1;  //= maxPoints - utok1;
         int obrana2; // = maxPoints - utok2;
 
-        if (!debug) {
+        System.out.println("Vitej v arene! \n 1, Pro boj s pocitacem zadej 1 \n 2, Pro boj s druhym hracem zadej 2");
+        switch (scanner.nextInt()) {
+
+             case 1:
+               System.out.println("Jmeno Tveho Bojovnika?");
+               jmeno1 = scanner.next();
+                System.out.println("Hodnota tveho utoku? Vyber si v rozmezi 0 - 40.");
+                utok1 = scanner.nextInt();
+                obrana1 = maxPoints - utok1;
+                System.out.println("Hodnota tve obrany je: " + obrana1);
+                jmeno2 = "Kyborg.pocitac";
+                utok2 = random.nextInt(40);
+                obrana2 = maxPoints - utok2;
+                    Bojovnik Ilidanis = new Bojovnik(jmeno1, 100, utok1, obrana1, kostka);
+                    Bojovnik Gandalf = new Bojovnik(jmeno2, 100, utok2,obrana2, kostka);
+                Arena arena = new Arena(Ilidanis, Gandalf, kostka);
+                /** spousti zapas*/
+                arena.zapas();
+                break;
+
+            case 2:
+                System.out.println("Jmeno Tveho Bojovnika?");
+                jmeno1 = scanner.next();
+                System.out.println("Hodnota tveho utoku? Vyber si v rozmezi 0 - 40.");
+                utok1 = scanner.nextInt();
+                obrana1 = maxPoints - utok1;
+                System.out.println("Hodnota tve obrany je: " + obrana1);
+                System.out.println("Druhy hraci, jake je jmeno Tveho bojovnika?");
+                jmeno2 = scanner.next();
+                System.out.println("A hdnota tveho utoku? Vyber si v rozmezi 0 - 40.");
+                utok2 = scanner.nextInt();
+                obrana2 = maxPoints - utok2;
+                System.out.println("Hodnota tve obrany je: " + obrana2);
+                Bojovnik B1 = new Bojovnik(jmeno1, 100, utok1, obrana1, kostka);
+                Bojovnik B2 = new Bojovnik(jmeno2, 100, utok2,obrana2, kostka);
+                Arena arena1 = new Arena(B1, B2, kostka);
+                arena1.zapas();
+                break;
+            default :
+                System.out.println("Musis zadat 1 nebo 2. Hrej znovu a spravne, nebo vubec!");
 
 
-            System.out.println("Vitej v arene!");
-            System.out.println("Jmeno Tveho Bojovnika?");
-            jmeno1 = scanner.nextLine();
-            System.out.println("Hodnota tveho utoku? Vyber si v rozmezi 0 - 40.");
-            utok1 = scanner.nextInt();
-            obrana1 = maxPoints - utok1;
-            System.out.println("Hodnota tve obrany je: " + obrana1);
-            System.out.println("Jmeno Tveho soupere?");
-            jmeno2 = scanner.next();
-            System.out.println("Hodnota tveho utoku? Vyber si v rozmezi 0 - 40.");
-            utok2 = scanner.nextInt();
-            obrana2 = maxPoints - utok2;
-            System.out.println("Hodnota tve obrany je: " + obrana2);
 
-        } else {
-
-            jmeno1 = "A";
-            utok1 = 40;
-            jmeno2 = "B";
-            utok2 = 20;
-            obrana1 = maxPoints - utok1;
-            obrana2 = maxPoints - utok2;
-        }
-
-
-        Bojovnik Ilidanis = new Bojovnik(jmeno1, 100, utok1, obrana1, kostka);
-        Bojovnik Gandalf = new Bojovnik(jmeno2, 100, utok2,obrana2, kostka);
-        Arena arena = new Arena(Ilidanis, Gandalf, kostka);
-
-
-        /** spousti zapas*/
-        arena.zapas();
 
     }
 
+}
 }
 
 
