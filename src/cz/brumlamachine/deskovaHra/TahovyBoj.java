@@ -17,7 +17,8 @@ public class TahovyBoj {
         int obrana1;  //= maxPoints - utok1;
         int obrana2; // = maxPoints - utok2;
 
-        System.out.println("Vitej v arene! \n 1, Pro boj s pocitacem zadej 1 \n 2, Pro boj s druhym hracem zadej 2");
+        System.out.println("Vitej v arene! \n 1, Pro boj s pocitacem zadej 1 \n 2, Pro boj s druhym hracem zadej 2\n 3, Pro simulaci souboje terminatora" +
+                "a Karlose Vemoly zadej 3");
         switch (scanner.nextInt()) {
 
              case 1:
@@ -36,7 +37,6 @@ public class TahovyBoj {
                 /** spousti zapas*/
                 arena.zapas();
                 break;
-
             case 2:
                 System.out.println("Jmeno Tveho Bojovnika?");
                 jmeno1 = scanner.next();
@@ -55,8 +55,16 @@ public class TahovyBoj {
                 Arena arena1 = new Arena(B1, B2, kostka);
                 arena1.zapas();
                 break;
+
+            case 3:
+                Bojovnik P1 = new Bojovnik("Terminator", 100, 20, 20, kostka);
+                Bojovnik P2 = new Bojovnik("KarlosVemola", 100, 20,20, kostka);
+                Arena arena2 = new Arena(P1, P2, kostka);
+                arena2.zapas();
+                break;
+
             default :
-                System.out.println("Musis zadat 1 nebo 2. Hrej znovu a spravne, nebo vubec!");
+                System.out.println("Musis zadat 1,2 nebo 3. Hrej znovu a spravne, nebo vubec!");
 
 
 

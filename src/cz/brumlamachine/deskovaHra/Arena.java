@@ -25,21 +25,25 @@ public class Arena {
             System.out.println(((Mag) a).grafickyMana());
         }
     }
-    private void vypisZpravu(String zprava) {
-        System.out.println(zprava);
-        /** zpozdi to */
-        try {
-            Thread.sleep(400);
+    private void zpozdi() {
+                try {
+            Thread.sleep(2000);
         } catch (InterruptedException ex) {
             System.err.println("Chyba, nepovedlo se uspat vlákno");
         }
+    }
+
+    private void vypisZpravu(String zprava) {
+        System.out.println(zprava);
     }
     public void zapas() {
         /** původní pořadí */
         Bojovnik b1 = bojovnik1;
         Bojovnik b2 = bojovnik2;
         System.out.println("Vítejte v aréně!");
+        zpozdi();
         System.out.printf("Dnes se utkají %s s %s! \n\n", bojovnik1, bojovnik2);
+        zpozdi();
         // prohození bojovníků
         boolean zacinaBojovnik2 = (kostka.hod() <= kostka.vratPocetSten() / 2);
         if (zacinaBojovnik2) {
@@ -47,6 +51,7 @@ public class Arena {
             b2 = bojovnik1;
         }
         System.out.printf("Začínat bude bojovník %s! \n\nZápas může začít...", b1);
+        zpozdi();
 
         /** cyklus s bojem */
         while (b1.nazivu() && b2.nazivu()) {
@@ -55,7 +60,6 @@ public class Arena {
             vypisZpravu(b1.vratPosledniZpravu()); // zpráva o útoku
             vypisZpravu(b2.vratPosledniZpravu()); // zpráva o obraně
             System.out.println("-------------- Konec kola -------------- \n");
-            System.out.println("Write your bets!");
             if (b2.nazivu()) {
                 b2.utoc(b1);
                 vykresli();

@@ -65,7 +65,6 @@ public class Bojovnik {
     public void branSe(int uder) {
         /** nova promenna zraneni - je to uder minus obrana plus nahodny hod kostkou*/
         int zraneni = uder - (obrana + kostka.hod());
-        System.out.println("Tvuj hod obrany je: " + this.kostka.hod());
         /** jestli je zraneni vetsi nez nula, tak nova hodnota zivotu je zivot minus zraneni, pokud je vysledny zivot mensi
          * nez nula, dorovname na nulu. v tomto pripade se nam nic nedeje, pokud je zraneni v zapornem (jinak by se to pricitalo) */
         if (zraneni > 0) {
@@ -87,10 +86,8 @@ public class Bojovnik {
     public void utoc(Bojovnik souper) {
         int hod = kostka.hod();
         int uder = utok + hod;
-
         nastavZpravu(String.format("%s útočí s úderem za %s hp", jmeno, uder));
         souper.branSe(uder);
-
     }
     protected void nastavZpravu(String zprava) {
         this.zprava = zprava;
@@ -98,10 +95,4 @@ public class Bojovnik {
     public String vratPosledniZpravu() {
         return zprava;
     }
-
-    /** zjevne spatna cesta?    */
-//public void pojmenujBojovnika1() {
-//        System.out.println("Pojmenuj sveho bojovnika");
-//        this.jmeno = scanner.next();
-//}
 }
