@@ -53,6 +53,7 @@ public class TahovyBoj {
                 Bojovnik B1 = new Bojovnik(jmeno1, 100, utok1, obrana1, kostka);
                 Bojovnik B2 = new Bojovnik(jmeno2, 100, utok2,obrana2, kostka);
                 Arena arena1 = new Arena(B1, B2, kostka);
+                /** spousti zapas*/
                 arena1.zapas();
                 break;
 
@@ -60,16 +61,13 @@ public class TahovyBoj {
                 Bojovnik P1 = new Bojovnik("Terminator", 100, 20, 20, kostka);
                 Bojovnik P2 = new Bojovnik("KarlosVemola", 100, 20,20, kostka);
                 Arena arena2 = new Arena(P1, P2, kostka);
+                /** spousti zapas*/
                 arena2.zapas();
                 break;
 
             default :
                 System.out.println("Musis zadat 1,2 nebo 3. Hrej znovu a spravne, nebo vubec!");
-
-
-
-
-    }
+                    }
 
 }
 }
