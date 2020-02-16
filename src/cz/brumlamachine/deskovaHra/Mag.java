@@ -36,6 +36,6 @@ public class Mag extends Bojovnik {
     }
 
     public String grafickyMana() {
-        return grafickyUkazatel(mana, maxMana);
+        return new GrafickyUkazatel(mana,maxMana).toString();
     }
 }

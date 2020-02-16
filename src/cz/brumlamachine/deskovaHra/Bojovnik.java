@@ -4,19 +4,33 @@ import java.util.Scanner;
 
 public class Bojovnik {
 
+    private static final int POCET_UKAZATELE = 20;
+
     Scanner scanner = new Scanner(System.in);
 
-    /** Jméno bojovníka */
+    /**
+     * Jméno bojovníka
+     */
     protected String jmeno;
-    /** Život v HP */
+    /**
+     * Život v HP
+     */
     protected int zivot;
-    /** Maximální zdraví */
+    /**
+     * Maximální zdraví
+     */
     protected int maxZivot;
-    /** Útok v HP */
+    /**
+     * Útok v HP
+     */
     protected int utok;
-    /** Obrana v HP */
+    /**
+     * Obrana v HP
+     */
     protected int obrana;
-    /** Instance hrací kostky */
+    /**
+     * Instance hrací kostky
+     */
     protected Kostka kostka;
     private String zprava;
 
@@ -41,25 +55,8 @@ public class Bojovnik {
         return (zivot > 0);
     }
 
-    protected String grafickyUkazatel(int aktualni, int maximalni) {
-        String s = "[";
-        int celkem = 20;
-        double pocet = Math.round(((double)aktualni / maximalni) * celkem);
-        if ((pocet == 0) && (nazivu())) {
-            pocet = 1;
-        }
-        for (int i = 0; i < pocet; i++) {
-            s += "#"; // s= s + "#"
-        }
-        for (int i = 0; i < celkem - pocet; i++) {
-            s += " "; // s= s + " "
-        }
-        s += "]";
-        return s;
-    }
-
-    public String grafickyZivot () {
-        return grafickyUkazatel(zivot, maxZivot);
+    public String grafickyZivot() {
+        return new GrafickyUkazatel(zivot, maxZivot).toString();
     }
 
     public void branSe(int uder) {
@@ -74,24 +71,26 @@ public class Bojovnik {
                 zivot = 0;
                 zprava += " a zemřel.";
             }
-        }
-            else {
+        } else {
             zprava = String.format("%s odrazil útok", jmeno);
         }
-            nastavZpravu(zprava);
+        nastavZpravu(zprava);
     }
 
-    /** metoda utoc, parametr je instance Bojovnika
-      */
+    /**
+     * metoda utoc, parametr je instance Bojovnika
+     */
     public void utoc(Bojovnik souper) {
         int hod = kostka.hod();
         int uder = utok + hod;
         nastavZpravu(String.format("%s útočí s úderem za %s hp", jmeno, uder));
         souper.branSe(uder);
     }
+
     protected void nastavZpravu(String zprava) {
         this.zprava = zprava;
     }
+
     public String vratPosledniZpravu() {
         return zprava;
     }
